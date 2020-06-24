@@ -1,7 +1,9 @@
-<div id="container"><!-- populated by JS--></div>
+<div id="container">
+  <!-- populated by JS-->
+</div>
 <script>
-  const url = "http://localhost:8080/posts.json";
-  const url1 = "https://pollysnips.s3.amazonaws.com/posts.json";
+  const url = "https://pollysnips.s3.amazonaws.com/posts.json";
+
   function renderPosts(posts) {
     container = document.getElementById("container");
     const html = posts.reduce((html, post) => {
@@ -18,5 +20,5 @@
     let posts = await response.json();
     renderPosts(posts);
   }
-  getPosts(url1);
+  getPosts(url);
 </script>
