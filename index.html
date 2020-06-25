@@ -1,24 +1,26 @@
 <div id="container">
-  <!-- populated by JS-->
+    <!-- populated by JS-->
 </div>
+<script src="./posts.js"></script>
 <script>
-  const url = "https://pollysnips.s3.amazonaws.com/posts.json";
+    const url = "https://pollysnips.s3.amazonaws.com/posts.json";
 
-  function renderPosts(posts) {
-    container = document.getElementById("container");
-    const html = posts.reduce((html, post) => {
-      return `${html}
-      <li class='post'>
-      <h2>${post.title} </h2>
-      <p> ${post.content}</p>
-      </li>`;
-    }, "");
-    container.innerHTML = `<ul id = 'posts'>${html}</ul>`;
-  }
-  async function getPosts(url) {
-    let response = await fetch(url);
-    let posts = await response.json();
-    renderPosts(posts);
-  }
-  getPosts(url);
+    function renderPosts(posts) {
+        const len = posts.length; // posts is an array
+        var html = '';
+        for (let i = 0; i < len; i++) {
+            html += '<li class="post">' +
+                '<h2>' + posts[i].title + '</h2>' +
+                '<h3>' + posts[i].content + '</h3>'
+        }
+        const container = document.getElementById('container')
+        container.innerHTML = '<ul>' + html + '</ul>';
+    };
+    // Get data from remote url using fetch 
+    async function getPosts(url) {
+        let response = await fetch(url);
+        let posts = await response.json();
+        renderPosts(posts);
+    }
+    getPosts(url);
 </script>

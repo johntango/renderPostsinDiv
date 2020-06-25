@@ -1,10 +1,13 @@
 import puppeteer from 'puppeteer';
-import { SSL_OP_TLS_ROLLBACK_BUG } from 'constants';
 
-export async function ssr(url){
-    const browser = await puppeteer.launch({headless:true});
+export async function ssr(url) {
+    const browser = await puppeteer.launch({
+        headless: true
+    });
     const page = await browser.newPage();
-    const page.goto(url,{waitUntil:'networkidle0'});
+    const page.goto(url, {
+        waitUntil: 'networkidle0'
+    });
     const html = await page.content();
     await browser.close()
     return html;
